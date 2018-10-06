@@ -1,9 +1,21 @@
-# life-lib 
+# life-lib
+ 
+## Important information!
+
 
 - Life Lib [ A framework of discord.js ] 
 
+## How i can install it and run my bot?
 
-Examples [
+Write ``npm install life-lib`` in your npm console!
+and don't forget install discord.js ! ``npm install discord.js``
+
+## How i can use this library?
+
+Before anything you need to put your client information like token and like this (:
+mylib.login({"token": "your bot token", "game": "game tt", "type": "WATCHING", "ownerID": " OWNER ID "})
+
+## Examples!
 ping pong example
 "
 var lifelib = require('life-lib')
@@ -31,4 +43,9 @@ create broadcast command!
 })",
 
 
-:]
+## About me (:
+Faisal Al-Mutery 
+NodeJS Developer .. 
+https://faisaldev.me
+me@faisaldev.me
+twitter.com/xfaisal49
