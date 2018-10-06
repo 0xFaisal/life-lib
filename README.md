@@ -18,6 +18,7 @@ mylib.login({"token": "your bot token", "game": "game tt", "type": "WATCHING", "
 ## Examples!
 ping pong example
 "
+```js
 var lifelib = require('life-lib')
 lifelib.login({"token": 'token', "game": "typeanythingelse", "type": "WATCHING", "ownerID": "your id!"})
 
@@ -32,15 +33,19 @@ lifelib.addmessage({
         'options': {"guildonly": "true","owneronly": false},
         'spam': 5000,
         'spamMessage': "Wait 5 sec"
-})",
+})
+```
+
 create broadcast command!
-"mylib.addmessage({
+```js
+lifelib.addmessage({
         'message': '-bc',
         'reply': 'Please wait to send this message for all guild members (:',
         'options': {"type": "bc","offline": false, "guildOnly": true},
         'spam': 5000,
         'spamMessage': "Wait 5 sec"
-})",
+})
+```
 
 
 ## About me (:
