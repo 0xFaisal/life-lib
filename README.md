@@ -46,11 +46,22 @@ lifelib.addmessage({
         'spamMessage': "Wait 5 sec"
 })
 ```
+if you need to check if user have permission to give him role or anything you can do this
 
+```js
+lifelib.addmessage({
+        'message': '-givemytestrole',
+        'reply': 'Done!',
+        'options': {"owneronly": false, "guildonly": false, "addRole": "test", "permissions": "MANAGE_GUILD"},
+        'spam': 5000,
+        'spamMessage': "Wait 5 sec",
+        "permissionsMSG": "you don't have permission MANAGE_GUILD!"
+})
+```
 
 ## About me (:
-Faisal Al-Mutery 
-NodeJS Developer .. 
-https://faisaldev.me
-me@faisaldev.me
-twitter.com/xfaisal49
+- Faisal Al-Mutery 
+- NodeJS Developer .. 
+- https://faisaldev.me
+- me@faisaldev.me
+- twitter.com/xfaisal49
