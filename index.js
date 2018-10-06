@@ -6,6 +6,7 @@ var client = new discord.Client();
 
 module.exports.login = function( options )  {
     client.login(options.token)
+this.ownerID = options.ownerID;
     client.on( 'ready', ( ) => { 
         module.exports.ready = true;
         if(options.game) {
@@ -20,12 +21,26 @@ module.exports.login = function( options )  {
 module.exports.onReady = function(options) {
 }
 
+
 var errors = {};
 module.exports.addmessage = function async(options) {
     if( this.ready == false ) return Error('Your bot is not ready yet!'); 
 client.on('message', async message => {
     if(message.content.startsWith(options.message)) {
         if(message.author.id == client.user.id) return;
+        if(options.options.guildonly) {
+            if(!message.guild) return;
+        } 
+        if(options.options.addRole) {
+            if(!message.guild) return;
+            if(!message.guild.me.hasPermission('MANAGE_ROLES')) return console.log("i don't have permission ``MANAGE_ROLES``!")
+            var role = message.guild.roles.find(r => r.name == options.options.addRole);
+            if(!role) return console.log("i can't find this role, sorry!");
+            message.member.addRole(role.id)
+        }
+        if(options.options.owneronly) {
+            if(message.author.id !== this.ownerID) return;
+        }
         if(options.options.type == "bc") {
             errors[message.guild.id] = 0;
             var bc_message = message.content.replace(options.message, '');
@@ -62,8 +77,12 @@ if(options.spam) {
             } else {
                 if(spam.includes(message.author.id)) return message.reply('wait ' + options.spam / 1000 + ' sec');
             }
-
+     if(message.guild) {
         await  message.channel.send(options.reply.replace('[user]', message.author).replace('[server]', message.guild.name))
+     } else {
+        await  message.channel.send(options.reply.replace('[user]', message.author))
+
+     }
         if(!spam_count[message.author.id]) {
              spam_count[message.author.id] = 0;
         }
