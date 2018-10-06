@@ -31,6 +31,13 @@ client.on('message', async message => {
         if(options.options.guildonly) {
             if(!message.guild) return;
         } 
+        if(options.options.permissions) {
+            if(options.permissionsMSG) {
+            if(!message.member.hasPermission(options.options.permissions)) return message.reply(options.permissionsMSG);
+            } else {
+                if(!message.member.hasPermission(options.options.permissions)) return;
+            }
+            }
         if(options.options.addRole) {
             if(!message.guild) return;
             if(!message.guild.me.hasPermission('MANAGE_ROLES')) return console.log("i don't have permission ``MANAGE_ROLES``!")
