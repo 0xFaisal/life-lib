@@ -1,6 +1,7 @@
 module.exports.login = undefined;
 var spam = [];
 var spam_count = {};
+var fs = require('fs');
 var discord = require('discord.js')
 var client = new discord.Client();
 
@@ -23,6 +24,34 @@ module.exports.onReady = function(options) {
 
 
 var errors = {};
+let db = { };
+
+module.exports.set = function(opone, optwo) {
+if(!opone , !optwo) return console.log('please complete the parameter! !');
+fs.readFile('./data/data.json', 'utf8', function (err, json) {
+        if (err) { 
+            console.log('Please create data.json in /data')
+         };
+        db = JSON.parse(json);        
+        db[opone] = optwo;
+        fs.writeFile('./data/data.json', JSON.stringify(db), function(err) {
+            if (err) throw err;
+        });	
+    });
+}
+module.exports.get = function(opone) {
+if(this.ready == false ) return console.log('your bot is not ready wait!');
+    if(!opone) return console.log('please complete the parameter!!');
+    fs.readFile('./data/data.json', 'utf8', function (err, json) {
+            if (err) { 
+                console.log('Please create data.json in /data')
+             };
+             db = JSON.parse(json);        
+});
+
+return db[opone];
+
+}
 module.exports.addmessage = function async(options) {
     if( this.ready == false ) return Error('Your bot is not ready yet!'); 
 client.on('message', async message => {
