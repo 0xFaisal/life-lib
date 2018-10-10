@@ -48,9 +48,11 @@ if(this.ready == false ) return console.log('your bot is not ready wait!');
              };
              db = JSON.parse(json);        
 });
-
-return db[opone];
-
+if(db[opone]) {
+    return db[opone];
+} else {
+    console.log('no data have this value!');
+}
 }
 module.exports.addmessage = function async(options) {
     if( this.ready == false ) return Error('Your bot is not ready yet!'); 
